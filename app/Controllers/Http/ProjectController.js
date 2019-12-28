@@ -17,22 +17,12 @@ class ProjectController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const { page } = request.get()
     const projects = await Project.query()
       .with('user')
-      .fetch()
+      .paginate(page)
     return projects
   }
-
-  /**
-   * Render a form to be used for creating a new project.
-   * GET projects/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {}
 
   /**
    * Create/save a new project.
@@ -63,17 +53,6 @@ class ProjectController {
     await project.load('tasks')
     return project
   }
-
-  /**
-   * Render a form to update an existing project.
-   * GET projects/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {}
 
   /**
    * Update project details.
