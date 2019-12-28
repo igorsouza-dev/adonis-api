@@ -33,3 +33,14 @@ adonis migration:run
 ### Starting Queues
 
 `$ adonis kue:listen`
+
+### Sentry
+
+Configure your sentry integration at your `.env`:
+
+```
+SENTRY_DSN=
+SENTRY_ENVIROMENT=
+```
+
+In order to work, you should set the sentry environment to `production`

@@ -3,6 +3,7 @@
 const BaseExceptionHandler = use('BaseExceptionHandler')
 const Env = use('Env')
 const Youch = use('youch')
+const sentry = use('Sentry')
 /**
  * This class handles all exceptions thrown during
  * the HTTP request lifecycle.
@@ -44,7 +45,11 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async report (error, { request }) {}
+  async report (error, { request }) {
+    if (Env.get('SENTRY_ENVIROMENT') === 'production') {
+      sentry.captureException(error)
+    }
+  }
 }
 
 module.exports = ExceptionHandler
