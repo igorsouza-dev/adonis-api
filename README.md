@@ -25,3 +25,11 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
+
+### Redis
+
+`$ docker run --name redis -p 6379:6379 -d redis:alpine`
+
+### Starting Queues
+
+`$ adonis kue:listen`
