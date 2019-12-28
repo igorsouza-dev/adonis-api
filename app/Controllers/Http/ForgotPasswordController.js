@@ -5,6 +5,7 @@ const moment = require('moment')
 
 const User = use('App/Models/User')
 const Mail = use('Mail')
+const Env = use('Env')
 
 class ForgotPasswordController {
   async store ({ request, response }) {
@@ -25,7 +26,7 @@ class ForgotPasswordController {
         message => {
           message
             .to(user.email)
-            .from('no-reply@igorsouza.com', 'Igor | Adonis')
+            .from(Env.get('MAIL_FROM'), 'Igor | Adonis')
             .subject('Password Recovery')
         }
       )
