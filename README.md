@@ -44,3 +44,24 @@ SENTRY_ENVIROMENT=
 ```
 
 In order to work, you should set the sentry environment to `production`
+
+## Routes
+
+| Route                            | Verb      | Handler                         | Middleware        | Name                   |
+| -------------------------------- | --------- | ------------------------------- | ----------------- | ---------------------- |
+| /users                           | POST      | UserController.store            | av:User           | /users                 |
+| /sessions                        | POST      | SessionController.store         | av:Session        | /sessions              |
+| /passwords                       | POST      | ForgotPasswordController.store  | av:ForgotPassword | /passwords             |
+| /passwords                       | PUT       | ForgotPasswordController.update | av:ResetPassword  | /passwords             |
+| /files/:id                       | HEAD,GET  | FileController.show             |                   | /files/:id             |
+| /files                           | POST      | FileController.store            | auth              | /files                 |
+| /projects                        | HEAD,GET  | ProjectController.index         | auth              | projects.index         |
+| /projects                        | POST      | ProjectController.store         | auth,av:Project   | projects.store         |
+| /projects/:id                    | HEAD,GET  | ProjectController.show          | auth              | projects.show          |
+| /projects/:id                    | PUT,PATCH | ProjectController.update        | auth              | projects.update        |
+| /projects/:id                    | DELETE    | ProjectController.destroy       | auth              | projects.destroy       |
+| /projects/:projects_id/tasks     | HEAD,GET  | TaskController.index            | auth              | projects.tasks.index   |
+| /projects/:projects_id/tasks     | POST      | TaskController.store            | auth,av:Task      | projects.tasks.store   |
+| /projects/:projects_id/tasks/:id | HEAD,GET  | TaskController.show             | auth              | projects.tasks.show    |
+| /projects/:projects_id/tasks/:id | PUT,PATCH | TaskController.update           | auth              | projects.tasks.update  |
+| /projects/:projects_id/tasks/:id | DELETE    | TaskController.destroy          | auth              | projects.tasks.destroy |
